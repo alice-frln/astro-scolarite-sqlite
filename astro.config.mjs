@@ -3,10 +3,11 @@ import node from "@astrojs/node";
 import auth from "auth-astro";
 
 export default defineConfig({
-  output:"server",
+  output: "server",
+  site: "https://scolarite.alice-frelin.fr",
 
-  adapter:node({
-      mode:"standalone"
+  adapter: node({
+    mode: "standalone"
   }),
 
   integrations: [auth()]
