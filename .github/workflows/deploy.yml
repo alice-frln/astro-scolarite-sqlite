@@ -30,13 +30,15 @@ jobs:
             echo "Début du déploiement"
             echo "======================================"
 
+            export PATH="$HOME/.bun/bin:$PATH"
+
             cd /var/www/scolarite/astro-scolarite-sqlite
 
             echo "Mise à jour du code..."
-            git pull origin
-            
+            git pull origin main
+
             echo "Installation des dépendances..."
-            bun ci
+            bun install --frozen-lockfile
 
             echo "Compilation Astro..."
             bun run --bun build
@@ -48,6 +50,7 @@ jobs:
             sudo systemctl status scolarite
 
             echo "Health check..."
+            sleep 3
             curl --fail http://localhost:3000/
 
             echo "======================================"
